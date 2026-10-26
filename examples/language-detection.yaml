@@ -1,0 +1,43 @@
+# 語言偵測 Topic（Microsoft Copilot Studio Adaptive Dialog 匯出格式）
+#
+# 這是整個對話系統裡，真正從系統匯出、原樣保留的一段邏輯——
+# 偵測使用者這一輪輸入是否包含中文字元，寫入共用的語言變數，
+# 後續所有訊息（含按鈕文字、警語）都讀這個變數，確保語言不會中途露餡。
+# 這段本身不含任何業務規則或公司資訊，是平台通用語法，因此原樣收錄作為範例。
+
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnActivity
+  id: main
+  condition: =!IsBlank(System.Activity.Text)
+  type: Message
+  actions:
+    - kind: ConditionGroup
+      id: detectChinese
+      conditions:
+        - id: containsCjk
+          condition: =IsMatch(System.Activity.Text, "[一-鿿]", MatchOptions.Contains)
+          actions:
+            - kind: SetVariable
+              id: setChineseLocale
+              variable: System.User.Language
+              value:
+                kind: OptionDataValue
+                type:
+                  kind: SystemOptionSet
+                  name: Locale
+                value: Chinese_Traditional
+
+      elseActions:
+        - kind: SetVariable
+          id: setEnglishLocale
+          variable: System.User.Language
+          value:
+            kind: OptionDataValue
+            type:
+              kind: SystemOptionSet
+              name: Locale
+            value: English
+
+inputType: {}
+outputType: {}
