@@ -4,13 +4,7 @@
 
 ## 測試流程
 
-```mermaid
-flowchart LR
-    A[① 一致性檢查<br/>同一題重複測試多次] --> B[② 批次產生測試題目<br/>Copilot Studio Evaluation<br/>依 topics 自動生成]
-    B --> C[③ 查正確率<br/>批次結果＋真實提問 log<br/>逐題覆核三級評分]
-    C --> D[④ 定位到具體節點<br/>哪個 topic／規則／文件<br/>造成的，收斂修正範圍]
-    D -->|改完| A
-```
+<img src="assets/flow-test-loop.png" alt="測試流程圖：一致性檢查、批次產生測試題目、查正確率、定位具體節點，改完回到一致性檢查形成循環" width="700">
 
 1. **一致性檢查**：同一個問題重複測試多次，檢查 bot 每次的回答是否一致。只要同一題出現不一致的答案，代表某個 topic 或 instructions 的判斷邏輯有模糊地帶，直接回頭修正，不等它在真實客服場景裡爆出來。
 2. **批次產生測試題目**：上線前用 Copilot Studio 內建的 Agent Evaluation 測試集功能（依現有 topics 自動生成題目），建立涵蓋功能、故障排除、韌體、比較題、陷阱題（刻意問不存在的型號）的題庫，一次把 bot 過一輪。
