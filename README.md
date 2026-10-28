@@ -13,8 +13,8 @@
 | 問題定義與需求規劃 | 獨立規劃，基於第一線客服經驗 |
 | 對話設計與 prompt 工程 | 獨立設計與撰寫 |
 | Copilot Studio 平台功能 | 使用並設定平台原生能力（Generative Orchestration、Topics 等），非自行開發底層引擎 |
-| 資料擷取／轉換工具（Node.js、Python） | 獨立開發，採 AI 協作（vibe coding）方式撰寫 |
-| 本機維護後台 | 獨立開發 |
+| 資料擷取／轉換工具（Node.js、Python） | 採 AI 協作（vibe coding）方式撰寫開發 |
+| 本機維護後台 | 採 AI 協作（vibe coding）方式撰寫開發 |
 | 測試方法設計與執行 | 獨立設計評分標準、建立題庫、執行與複核 |
 | 上線後維運與迭代 | 獨立維護 |
 
